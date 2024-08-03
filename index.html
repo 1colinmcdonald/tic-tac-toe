@@ -6,10 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-tac-toe</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <form>
+        <label>X's name:<input id="player1" name='player1' type="text" required></label>
 
+        <label>O's name:<input id="player2" name='player1' type="text" required></label>
+        <button class="start" type="submit">Start Game</button>
+    </form>
+    <div id="board">
+        <div id="top-left" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="top-middle" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="top-right" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="middle-left" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="middle-middle" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="middle-right" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="bottom-left" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="bottom-middle" class="square">
+            <div class="piece"></div>
+        </div>
+        <div id="bottom-right" class="square">
+            <div class="piece"></div>
+        </div>
+    </div>
+    <button class="reset">Reset Game</button>
+    <div class="game-state"></div>
 </body>
 
 </html>
