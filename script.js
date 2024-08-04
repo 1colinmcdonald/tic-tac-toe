@@ -113,6 +113,7 @@ const displayController = (function () {
             board.style.visibility = 'hidden';
             clearTurn();
             resetButton.style.visibility = 'hidden';
+            Game.resetTurn();
         });
     }
 
@@ -190,7 +191,11 @@ const Game = (function () {
         return (turn + 1) % 2;
     }
 
-    return { startGame, attemptMove }
+    const resetTurn = () => {
+        turn = 1;
+    }
+
+    return { startGame, attemptMove, resetTurn }
 })();
 
 displayController.initializeDisplay();
