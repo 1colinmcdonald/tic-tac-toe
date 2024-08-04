@@ -75,7 +75,7 @@ const Gameboard = (function () {
 
 const displayController = (function () {
     const board = document.querySelector('#board');
-    const turn = document.querySelector(".game-state");
+    const gameState = document.querySelector(".game-state");
 
     const renderBoard = () => {
         const grid = Gameboard.getGrid();
@@ -95,7 +95,7 @@ const displayController = (function () {
             const index = Array.prototype.indexOf.call(board.children, e.target);
             Game.attemptMove(Math.trunc(index / 3), index % 3);
         }
-        
+
         startForm.onsubmit = (e) => {
             e.preventDefault();
             Game.startGame(document.querySelector("#player1").value, document.querySelector('#player2').value);
@@ -116,15 +116,15 @@ const displayController = (function () {
         });
     }
 
-    function displayWhoseTurn(name) {
-        turn.textContent = name + "\'s turn";
-    }
-
     function clearTurn() {
-        turn.textContent = '';
+        gameState.textContent = '';
     }
 
-    return { renderBoard, initializeDisplay, displayWhoseTurn };
+    function displayGameState(state) {
+        gameState.textContent = state;
+    }
+
+    return { renderBoard, initializeDisplay, displayGameState };
 })();
 
 function createPlayer(number) {
@@ -161,16 +161,16 @@ const Game = (function () {
                 displayController.renderBoard();
                 state = Gameboard.getGameStatus();
                 if (state === 'tie') {
-                    console.log("It's a tie!");
+                    displayController.displayGameState("It's a tie!");
                 }
                 else if (state === 'X') {
-                    console.log(`${players[0].getName()} won!`);
+                    displayController.displayGameState(players[0].getName() + " won!");
                 }
                 else if (state === 'O') {
-                    console.log(`${players[1].getName()} won!`);
+                    displayController.displayGameState(players[1].getName() + " won!");
                 }
                 else {
-                    displayController.displayWhoseTurn(players[nextTurn()].getName());
+                    displayController.displayGameState(players[nextTurn()].getName() + "\'s turn");
                 }
             }
         }
@@ -183,7 +183,7 @@ const Game = (function () {
         players[1].setPiece("O");
         players[1].setName(player2Name);
         displayController.renderBoard();
-        displayController.displayWhoseTurn(players[nextTurn()].getName());
+        displayController.displayGameState(players[nextTurn()].getName() + "\'s turn");
     }
 
     const nextTurn = () => {
