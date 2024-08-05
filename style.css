@@ -10,7 +10,7 @@ html {
 body {
     display: grid;
     grid-template-rows: fit-content;
-    grid-auto-rows: fit-content;
+    grid-template-rows: 100px 400px 100px 100px;
     /* align-content: center; */
     align-items: center;
     justify-items: center;
